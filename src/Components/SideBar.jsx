@@ -5,10 +5,10 @@ import { Link } from "react-router";
 import logo from "../assets/react-router.svg";
 import omar from "../assets/omar.png";
 import SearchIcon from "../assets/search.svg";
-import Home from "../assets/home.svg";
+import Home from "../assets/dashboard.svg";
 import Settings from "../assets/settings.svg";
-import Users from "../assets/users.svg";
-import CreateUser from "../assets/createuser.svg";
+import Users from "../assets/support.svg";
+import CreateUser from "../assets/news.svg";
 //  import '../sidebar.css'
 
 const Sidebar = () => {
