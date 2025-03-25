@@ -1,0 +1,113 @@
+.login-container { 
+    display:flex;
+    align-items: center;
+    height: 100vh;
+    background: whitesmoke;
+    justify-content: center; 
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .login-left {
+    width: 30%;
+    height: 50vh; 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    
+  }
+  
+  .login-logo img {
+    width: 180px;
+  }
+  
+  .login-logo h4 {
+    font-size: 24px;
+    margin: 10px 0;
+    color: #333;
+  }
+  
+  p {
+    color: #777;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .input-field:focus {
+    outline: none;
+    border-color: #b70aeb;
+  }
+  
+  .login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #b70aeb;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login-btn:hover {
+    background-color: #b70aeb;
+  }
+  
+  .forgot-password {
+    color: #b70aeb;
+    text-decoration: none;
+    margin-top: 15px;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  .register-link {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 20px; 
+    
+  }
+  
+  .register-btn {
+    background-color: #b70aeb;
+    color: white;
+    border: 1px solid #b70aeb48;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 17px;
+    transition: background-color 0.3s;
+  }
+  
+  .register-btn:hover {
+    background-color: #b70aebb6;
+  }
+ 
+.register-link-a {
+    color: #b70aeb;
+    font-weight: normal;
+    /* font-size:2rem; */
+    cursor: pointer;
+    transition: color 0.3s;
+    margin-left:10px;
+  }
+  
+  .register-link-a:hover {
+    color: #b70aeb; 
+    text-decoration: underline; 
+  }
+ 
