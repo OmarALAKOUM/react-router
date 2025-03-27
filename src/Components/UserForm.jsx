@@ -84,10 +84,15 @@
 // };
 
 // export default UserForm;
-import React, { useState, useEffect } from "react";
-import { createUser, updateUser, getUserById } from "../API/UserAPI";
+import React, { useState, useEffect, useContext } from "react";
+import {
+  createUser,
+  updateUser,
+  getUserById,
+  getProfile,
+} from "../API/UserAPI";
 import { useNavigate, useParams } from "react-router";
-
+import { AuthContext } from "../Context/ContextAPI";
 const UserForm = () => {
   const [formData, setFormData] = useState({
     FirstName: "",
@@ -95,7 +100,9 @@ const UserForm = () => {
     Email: "",
     Password: "",
   });
+
   const { id } = useParams();
+  const { profile, setProfile } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -132,6 +139,18 @@ const UserForm = () => {
     e.preventDefault();
     if (id) {
       await updateUser(id, formData);
+      console.log("id", id);
+      console.log("loginid", profile.loginid);
+      if (id == profile.loginid) {
+        console.log("id", id);
+        console.log("loginid", profile.loginid);
+        const userupdated = await getProfile();
+        setProfile({
+          loginid: userupdated.ID,
+          email: userupdated.Email,
+          firstname: userupdated.FirstName,
+        });
+      }
     } else {
       await createUser(formData);
     }

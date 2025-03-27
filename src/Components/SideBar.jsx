@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { LogOut, Menu, ChevronLeft, ChevronRight } from "lucide-react";
 import { FaHome, FaUsers } from "react-icons/fa";
 import { Link } from "react-router";
@@ -9,21 +9,21 @@ import Home from "../assets/dashboard.svg";
 import Settings from "../assets/settings.svg";
 import Users from "../assets/support.svg";
 import CreateUser from "../assets/news.svg";
-//  import '../sidebar.css'
+import { AuthContext } from '../Context/ContextAPI';
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-
+  const { profile } = useContext(AuthContext);
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
     document.body.classList.toggle("collapsed");
   };
-
+ 
   return (
     <nav className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
       <div className="sidebar-top-wrapper">
         <div className="sidebar-top">
-          <Link to="/" className="logo_wrapper">
+          <Link to="/dashboard" className="logo_wrapper">
             <img src={logo} alt="Logo" className="logo-small" />
             <span className={`company-name ${isCollapsed ? "hide" : ""}`}>
               React-Router
@@ -43,14 +43,15 @@ const Sidebar = () => {
       <div className="sidebar-links">
         <ul>
           <li>
-            <Link to="/home" title="Home" className="tooltip">
+            <Link to="/dashboard/dashboard" title="Dashboard" className="tooltip">
               <img src={Home} />
-              <span className={`link ${isCollapsed ? "hide" : ""}`}>Home</span>
+              <span className={`link ${isCollapsed ? "hide" : ""}`}>Dashboard</span>
             </Link>
           </li>
 
           <li>
-            <Link to="/settings" title="Settings" className="tooltip">
+            <Link to="/dashboard/settings" title="Settings" className="tooltip">
+            
               <img src={Settings} />
               <span className={`link ${isCollapsed ? "hide" : ""}`}>
                 Settings
@@ -86,8 +87,8 @@ const Sidebar = () => {
         </div>
 
         <div className={`avatar_name ${isCollapsed ? "hide" : ""}`}>
-          <div className="user-name">Omar</div>
-          <div className="email">oakoum4@gmail.com</div>
+          <div className="user-name">{profile.firstname}</div>
+          <div className="email">{profile.email}</div>
         </div>
 
         <Link to="/logout" className={`logout ${isCollapsed ? "hide" : ""}`}>

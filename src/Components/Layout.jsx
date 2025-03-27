@@ -1,8 +1,10 @@
 import { Outlet, Navigate } from "react-router";
 import Sidebar from "./SideBar.jsx";
+import { useContext } from "react";
+import { AuthContext } from "../Context/ContextAPI";
 
 const Layout = () => {
-  const isAuthenticated = !!localStorage.getItem("token");
+  const { isAuthenticated } = useContext(AuthContext);
 
   if (!isAuthenticated) {
     return <Navigate to="/login" />;

@@ -28,13 +28,13 @@ body.collapsed .sidebar {
 
 .content {
   flex: 1;
-  margin-left: 18rem;
+  margin-left: 17.5rem;
   padding: 20px;
   transition: margin-left 0.3s ease-in-out;
 }
 
 body.collapsed .content {
-  margin-left: 5rem;
+  margin-left: 5.5rem;
 }
 
 
@@ -707,3 +707,9 @@ body.collapsed .search_wrapper img {
   display: none; 
 }
 
+/* 
+.sidebar-links ul li a.active {
+  background:  #EBEFFD; 
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}  */

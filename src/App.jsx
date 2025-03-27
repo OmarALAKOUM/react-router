@@ -88,28 +88,29 @@ import { Routes, Route, Navigate } from "react-router";
 import NotFound from "./Components/NotFound";
 import Sidebar from "./Components/SideBar";
 import Layout from "./Components/Layout";
+import Dashboard from "./Components/Dashboard";
+import Settings from "./Components/Settings";
+import { AuthProvider } from "./Context/ContextAPI";
 
 function App() {
   return (
-    <Routes>
-      {/* <Route index element={<LoginForm />} />
-      <Route path="sidebar" element={<Sidebar />} />
-      <Route path="/users" element={<UsersList />} />
-      <Route path="/register" element={<UserForm />} />
-      <Route path="/users/:id" element={<UserForm />} />
-      <Route path = "*" element= {<NotFound />} /> */}
-
-      <Route path="/" element={<Navigate to="/login" />} />
-      <Route path="/login" element={<LoginForm />} />
-      <Route path="/createUser" element={<UserForm />} />
-      <Route path="/dashboard" element={<Layout />}>
-        <Route index element={<Navigate to="/dashboard" />} />
-        <Route path="users" element={<UsersList />} />
-        <Route path="users/:id" element={<UserForm />} /> 
-        <Route path="register" element={ <UserForm />} />
-      </Route>
-      <Route path="*" element={<Navigate to="/login" />} />
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/createUser" element={<UserForm />} />
+        <Route path="/dashboard" element={<Layout />}>
+          <Route index element={<Navigate to="/dashboard" />} />
+          <Route path="users" element={<UsersList />} />
+          <Route path="users/:id" element={<UserForm />} />
+          <Route path="register" element={<UserForm />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </AuthProvider>
   );
 }
 
