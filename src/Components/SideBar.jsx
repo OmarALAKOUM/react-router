@@ -43,14 +43,14 @@ const Sidebar = () => {
       <div className="sidebar-links">
         <ul>
           <li>
-            <Link to="/dashboard/dashboard" title="Dashboard" className="tooltip">
+            <Link to="/" title="Dashboard" className="tooltip">
               <img src={Home} />
               <span className={`link ${isCollapsed ? "hide" : ""}`}>Dashboard</span>
             </Link>
           </li>
 
           <li>
-            <Link to="/dashboard/settings" title="Settings" className="tooltip">
+            <Link to="/settings" title="Settings" className="tooltip">
             
               <img src={Settings} />
               <span className={`link ${isCollapsed ? "hide" : ""}`}>
@@ -60,7 +60,7 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <Link to="/dashboard/users" title="Users" className="tooltip">
+            <Link to="/users" title="Users" className="tooltip">
               {/* <Users /> */}
               <img src={Users} />
               <span className={`link ${isCollapsed ? "hide" : ""}`}>Users</span>
@@ -68,7 +68,7 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <Link to="/dashboard/register" title="Create User" className="tooltip">
+            <Link to="/register" title="Create User" className="tooltip">
               <img src={CreateUser} />
               <span className={`link ${isCollapsed ? "hide" : ""}`}>
                 Create User
@@ -91,7 +91,7 @@ const Sidebar = () => {
           <div className="email">{profile.email}</div>
         </div>
 
-        <Link to="/logout" className={`logout ${isCollapsed ? "hide" : ""}`}>
+        <Link to="/login" className={`logout ${isCollapsed ? "hide" : ""}`}>
           <LogOut />
         </Link>
       </div>

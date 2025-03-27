@@ -96,16 +96,17 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+        {/* <Route path="/" element={<Navigate to="/login" />} /> */}
+        {/* <Route path="/" element = {<Layout/>} /> */}
         <Route path="/login" element={<LoginForm />} />
         <Route path="/createUser" element={<UserForm />} />
-        <Route path="/dashboard" element={<Layout />}>
-          <Route index element={<Navigate to="/dashboard" />} />
+        <Route path="/" element={<Layout />}>
+          {/* <Route index element={<Navigate to="/" />} /> */}
           <Route path="users" element={<UsersList />} />
           <Route path="users/:id" element={<UserForm />} />
           <Route path="register" element={<UserForm />} />
           <Route path="settings" element={<Settings />} />
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route index element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="*" element={<Navigate to="/login" />} />

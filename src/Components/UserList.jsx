@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { getUsers, deleteUser } from "../API/UserAPI";
 import { Link, useNavigate } from "react-router";
-//{ onEdit }
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
@@ -14,7 +13,7 @@ const UsersList = () => {
     } catch (error) {
       console.error("Error fetching users", error);
       if (error.response && error.response.status === 401) {
-        navigate("/");
+        navigate("/login");
       }
     }
   };
@@ -61,7 +60,7 @@ const UsersList = () => {
               <td>{user.Email}</td>
               <td>
                 {/* <FaEdit onClick={() =>  handleEdit(user)} style={{ cursor: 'pointer', marginRight: '10px' }} /> */}
-                <Link to={`/dashboard/users/${user.ID}`}>
+                <Link to={`/users/${user.ID}`}>
                   <FaEdit style={{ cursor: "pointer", marginRight: "10px" }} />
                 </Link>
                 <FaTrash

@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { loginUser, getProfile } from '../API/UserAPI';
+import React, { useState } from "react";
+import { loginUser } from '../API/UserAPI';
 import { Link, useNavigate } from 'react-router'; 
 import "../LoginForm.css"; 
 import '../LoginForm.css'
@@ -9,34 +9,23 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();  
-  const {setLoading, setProfile} = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
     try {
       const loginData = await loginUser(email, password);
       const { token, user } = loginData;
 
       if (token && user) {
-        console.log("Logged in with:", user);
-       const profileData = await getProfile();
-        console.log('profile data ',profileData);
-        setProfile({
-          loginid:profileData.ID,
-          email: profileData.Email,
-          firstname: profileData.FirstName,
-        });
-        navigate("/dashboard/dashboard");
+         navigate("/");
       } else {
         alert("Invalid credentials. Please try again.");
       }
     } catch (error) {
       console.log(error)
       alert("Invalid email or password.");
-    } finally {
-      setLoading(false); 
-    }
+    } 
   };
   
   return (

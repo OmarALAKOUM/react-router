@@ -1,13 +1,45 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import { getProfile } from "../API/UserAPI";
+import { useNavigate } from 'react-router';
 
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [profile, setProfile] = useState({loginid:'', email: "", firstname: "" });
+  const [profile, setProfile] = useState({
+    loginid: "",
+    email: "",
+    firstname: "",
+  });
   const [loading, setLoading] = useState(false);
-  const isAuthenticated = !!profile.firstname; 
+  const navigate = useNavigate(); 
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        setLoading(true);
+        const profileData = await getProfile();
+        if (profileData) {
+          setProfile({
+                loginid:profileData.ID,
+                email: profileData.Email,
+                firstname: profileData.FirstName,
+              });
+              navigate('/');
+        }
+      } catch (error) {
+        console.error("Failed to fetch profile:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  const isAuthenticated = !!profile.firstname;
   return (
-    <AuthContext.Provider value={{ profile, setProfile,isAuthenticated ,loading, setLoading}}>
+    <AuthContext.Provider
+      value={{ profile, setProfile, isAuthenticated, loading, setLoading }}
+    >
       {children}
     </AuthContext.Provider>
   );
