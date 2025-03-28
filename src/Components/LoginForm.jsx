@@ -1,24 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { loginUser } from '../API/UserAPI';
-import { Link, useNavigate } from 'react-router'; 
+import { Link } from 'react-router'; 
 import "../LoginForm.css"; 
 import '../LoginForm.css'
 import { AuthContext } from "../Context/ContextAPI";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();  
-
+  const [password, setPassword] = useState(""); 
+  const { refreshProfile } = useContext(AuthContext);
   const handleLogin = async (e) => {
     e.preventDefault();
-    // setLoading(true);
     try {
       const loginData = await loginUser(email, password);
       const { token, user } = loginData;
-
+     console.log(loginData);
       if (token && user) {
-         navigate("/");
+        refreshProfile();
       } else {
         alert("Invalid credentials. Please try again.");
       }

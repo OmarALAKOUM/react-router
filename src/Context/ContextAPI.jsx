@@ -12,10 +12,11 @@ export const AuthProvider = ({ children }) => {
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate(); 
-  useEffect(() => {
-    const fetchProfile = async () => {
+  
+    const refreshProfile = async () => {
       try {
         setLoading(true);
+        
         const profileData = await getProfile();
         if (profileData) {
           setProfile({
@@ -32,13 +33,13 @@ export const AuthProvider = ({ children }) => {
       }
     };
 
-    fetchProfile();
+  useEffect(() => {
+    refreshProfile();
   }, []);
-
   const isAuthenticated = !!profile.firstname;
   return (
     <AuthContext.Provider
-      value={{ profile, setProfile, isAuthenticated, loading, setLoading }}
+      value={{ profile, setProfile, isAuthenticated, loading, setLoading, refreshProfile }}
     >
       {children}
     </AuthContext.Provider>

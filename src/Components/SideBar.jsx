@@ -23,7 +23,7 @@ const Sidebar = () => {
     <nav className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
       <div className="sidebar-top-wrapper">
         <div className="sidebar-top">
-          <Link to="/dashboard" className="logo_wrapper">
+          <Link to="/" className="logo_wrapper">
             <img src={logo} alt="Logo" className="logo-small" />
             <span className={`company-name ${isCollapsed ? "hide" : ""}`}>
               React-Router
