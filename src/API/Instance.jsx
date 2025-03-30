@@ -4,7 +4,6 @@ import axios from 'axios';
 const API_URL='https://node-firstproject-back.onrender.com/api'
 const axiosInstance = axios.create({
   baseURL: API_URL,
-  timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
   },
