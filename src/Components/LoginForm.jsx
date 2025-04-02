@@ -1,31 +1,35 @@
 import React, { useState, useContext } from "react";
-import { loginUser } from '../API/UserAPI';
-import { Link } from 'react-router'; 
-import "../LoginForm.css"; 
-import '../LoginForm.css'
+import { loginUser } from "../API/UserAPI";
+import { Link } from "react-router";
+import "../LoginForm.css";
+import "../LoginForm.css";
 import { AuthContext } from "../Context/ContextAPI";
 
 function LoginForm() {
+  const [loading, setLoading] = useState(false); 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); 
+  const [password, setPassword] = useState("");
   const { refreshProfile } = useContext(AuthContext);
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true); 
     try {
       const loginData = await loginUser(email, password);
       const { token, user } = loginData;
-     console.log(loginData);
+      console.log(loginData);
       if (token && user) {
         refreshProfile();
       } else {
         alert("Invalid credentials. Please try again.");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       alert("Invalid email or password.");
-    } 
+    } finally {
+      setLoading(false); 
+    }
   };
-  
+
   return (
     <div className="login-container">
       <div className="login-left">
@@ -57,16 +61,16 @@ function LoginForm() {
           />
 
           <button type="submit" className="login-btn">
-            Sign In
+            {loading ? "Signing In..." : "Sign In"}
           </button>
 
-          <a className="forgot-password" href="#!">
+          <Link className="forgot-password" to="#">
             Forgot password?
-          </a>
+          </Link>
           <div className="register-link">
             <p>Don't have an account?</p>
             <Link to="/createUser" className="register-link-a">
-                Register
+              Register
             </Link>
             {/* <button className="register-btn" >  
               Register    //onClick={onRegister}

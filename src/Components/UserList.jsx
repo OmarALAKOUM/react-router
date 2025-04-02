@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router";
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const fetchUsers = async () => {
     try {
@@ -15,6 +16,8 @@ const UsersList = () => {
       if (error.response && error.response.status === 401) {
         navigate("/login");
       }
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -52,28 +55,35 @@ const UsersList = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user.ID}>
-              <td>{user.ID}</td>
-              <td>{user.FirstName}</td>
-              <td>{user.LastName}</td>
-              <td>{user.Email}</td>
-              <td>
-                {/* <FaEdit onClick={() =>  handleEdit(user)} style={{ cursor: 'pointer', marginRight: '10px' }} /> */}
-                <Link to={`/users/${user.ID}`}>
-                  <FaEdit style={{ cursor: "pointer", marginRight: "10px" }} />
-                </Link>
-                <FaTrash
-                  onClick={() => handleDelete(user.ID)}
-                  style={{ cursor: "pointer" }}
-                />
+          {loading ? (
+            <tr>
+              <td colSpan="5" className="spinner-container">
+                <span className="loader"></span>
               </td>
             </tr>
-          ))}
+          ) : (
+            users.map((user) => (
+              <tr key={user.ID}>
+                <td>{user.ID}</td>
+                <td>{user.FirstName}</td>
+                <td>{user.LastName}</td>
+                <td>{user.Email}</td>
+                <td>
+                  <Link to={`/users/${user.ID}`}>
+                    <FaEdit style={{ cursor: "pointer", marginRight: "10px" }} />
+                  </Link>
+                  <FaTrash
+                    onClick={() => handleDelete(user.ID)}
+                    style={{ cursor: "pointer" }}
+                  />
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
   );
-};
+}  
 
 export default UsersList;

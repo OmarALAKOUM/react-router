@@ -64,6 +64,7 @@ const Sidebar = () => {
               {/* <Users /> */}
               <img src={Users} />
               <span className={`link ${isCollapsed ? "hide" : ""}`}>Users</span>
+              {/* <span class="loader"></span> */}
             </Link>
           </li>
 
